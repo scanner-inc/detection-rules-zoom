@@ -1,0 +1,23 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Zoom Automatic Sign Out Disabled
+description: |-
+  Detect when a Zoom user turns off the organization's setting to automatically
+  sign users out after a specified period of time. This can weaken session
+  security controls.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:zoom
+  action:Update
+  category_type:Account
+  operation_detail:'Automatically sign users out after a specified time: from On to Off'
+  | groupbycount(operator)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- tactics.ta0005.defense_evasion
+- techniques.t1562.impair_defenses
+- source.zoom

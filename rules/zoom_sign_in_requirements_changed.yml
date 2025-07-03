@@ -1,0 +1,25 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Zoom Sign In Requirements Changed
+description: |-
+  Detect when a Zoom user changes the organization's sign in requirements
+  from enabled to disabled states. Weakening authentication requirements
+  reduces the secuirty posture of the organization's Zoom environment and
+  can make it easier for attackers to gain access to accounts.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:zoom
+  action:Update
+  category_type:Account
+  operation_detail:'Sign-In Password Requirement'
+  operation_detail:'from On to Off'
+  | groupbycount(operator)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- tactics.ta0005.defense_evasion
+- techniques.t1556.modify_authentication_process
+- source.zoom

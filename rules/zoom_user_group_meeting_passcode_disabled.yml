@@ -1,0 +1,23 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Zoom User Group Meeting Passcode Disabled
+description: |-
+  Detect when a Zoom user turns off a user group's setting to require
+  meeting passcodes. This can weaken meeting security controls and
+  allow unauthorized access.
+enabled: true
+severity: Low
+query_text: |-
+  %ingest.source_type:zoom
+  action:Update
+  category_type:'User Group'
+  operation_detail:(Passcode and 'On to Off')
+  | groupbycount(operator)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- low_severity_alerts
+tags:
+- tactics.ta0009.collection
+- techniques.t1125.video_capture
+- source.zoom

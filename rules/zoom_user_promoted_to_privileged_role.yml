@@ -1,0 +1,24 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Zoom User Promoted to Privileged Role
+description: |-
+  Detect when a Zoom user is promoted to a privileged role, such as Admin,
+  Co-Owner, or Billing Admin. This can indicate potential privilege escalation.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:zoom
+  action:Update
+  category_type:User
+  operation_detail:'Change Role'
+  (not operation_detail:('from Admin' 'from Co-Owner' 'from Owner' 'from Billing Admin'))
+  operation_detail:('to Admin' 'to Co-Owner' 'to Owner' 'to Billing Admin')
+  | groupbycount(operator)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- tactics.ta0004.privilege_escalation
+- techniques.t1078.valid_accounts
+- source.zoom

@@ -1,0 +1,23 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Zoom All Meetings Secured With One Option Disabled
+description: |-
+  Detect when a Zoom user turns off the organization's requirement that all
+  meetings are secured with one security option. This can weaken meeting
+  security controls.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:zoom
+  action:Update
+  category_type:Account
+  operation_detail:'Require that all meetings are secured with one security option: from On to Off'
+  | groupbycount(operator)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- tactics.ta0005.defense_evasion
+- techniques.t1562.impair_defenses
+- source.zoom
