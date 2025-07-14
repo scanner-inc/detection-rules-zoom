@@ -7,7 +7,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:zoom
+  %ingest.source_type:"zoom:operations"
   action:Update
   category_type:Account
   operation_detail:'Require that all meetings are secured with one security option: from On to Off'

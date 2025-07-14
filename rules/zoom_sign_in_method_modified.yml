@@ -6,7 +6,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:zoom
+  %ingest.source_type:"zoom:operations"
   action:Update
   category_type:Account
   operation_detail:'Sign-in Methods  - Allow users to sign in with * from Off to On'
