@@ -7,7 +7,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:"zoom:operations"
+  %ingest.source_type:zoom
   action:Update
   category_type:Account
   operation_detail:'Automatically sign users out after a specified time: from On to Off'

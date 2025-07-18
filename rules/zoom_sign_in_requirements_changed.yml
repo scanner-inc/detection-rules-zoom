@@ -8,7 +8,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:"zoom:operations"
+  %ingest.source_type:zoom
   action:Update
   category_type:Account
   operation_detail:'Sign-In Password Requirement'
