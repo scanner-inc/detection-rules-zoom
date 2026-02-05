@@ -3,7 +3,6 @@ name: Zoom User Promoted to Privileged Role
 description: |-
   Detect when a Zoom user is promoted to a privileged role, such as Admin,
   Co-Owner, or Billing Admin. This can indicate potential privilege escalation.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:zoom

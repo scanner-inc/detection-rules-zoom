@@ -4,7 +4,6 @@ description: |-
   Detect when a Zoom user turns off a user group's setting to require
   meeting passcodes. This can weaken meeting security controls and
   allow unauthorized access.
-enabled: true
 severity: Low
 query_text: |-
   @scnr.source_type:zoom

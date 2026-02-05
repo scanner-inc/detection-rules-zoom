@@ -4,7 +4,6 @@ description: |-
   Detect when a Zoom user turns off the organization's setting to automatically
   sign users out after a specified period of time. This can weaken session
   security controls.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:zoom

@@ -4,7 +4,6 @@ description: |-
   Detect when a Zoom user turns off the organization's setting to require a
   passcode when scheduling new meetings. This can weaken meeting security
   controls.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:zoom

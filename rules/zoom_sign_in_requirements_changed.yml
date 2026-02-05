@@ -5,7 +5,6 @@ description: |-
   from enabled to disabled states. Weakening authentication requirements
   reduces the secuirty posture of the organization's Zoom environment and
   can make it easier for attackers to gain access to accounts.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:zoom

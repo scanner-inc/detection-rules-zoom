@@ -3,7 +3,6 @@ name: Zoom Sign In Method Modified
 description: |-
   Detect when a Zoom user modifies the organization's sign in method settings,
   such as enabling Google or Apple ID sign-in.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:zoom
